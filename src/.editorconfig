@@ -1,0 +1,22 @@
+root = true
+
+[*.cs]
+# Roslyn Analyzers を全体的に warning に
+dotnet_analyzer_diagnostic.severity = warning
+
+# フォーマット
+indent_style = space
+indent_size = 4
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+
+# 不要な抑制を避けるため、明らかに不要なルールだけ無効化
+# IDE0130: Namespace does not match folder structure (サブフォルダ構成と namespace が異なるため)
+dotnet_diagnostic.IDE0130.severity = none
+
+# CA1822: static にできるメソッド (インスタンスメソッドとして保持したい場合があるため)
+dotnet_diagnostic.CA1822.severity = none
+
+# SYSLIB1054: LibraryImport (AllowUnsafeBlocks が必要になるため DllImport を使う)
+dotnet_diagnostic.SYSLIB1054.severity = none

@@ -1,0 +1,36 @@
+version: "3"
+
+vars:
+  PROJECT_DIR: ./src
+  PUBLISH_DIR: ./publish
+
+tasks:
+  build:
+    desc: ビルド (コンパイル確認用)
+    cmds:
+      - dotnet build {{.PROJECT_DIR}} -c Release
+
+  publish:
+    desc: 単一 exe を生成
+    cmds:
+      - dotnet publish {{.PROJECT_DIR}} -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o {{.PUBLISH_DIR}}
+
+  lint:
+    desc: Roslyn Analyzers による静的解析
+    cmds:
+      - dotnet build {{.PROJECT_DIR}} -c Release -warnaserror
+
+  format:
+    desc: コードフォーマットの自動修正
+    cmds:
+      - dotnet format {{.PROJECT_DIR}}
+
+  format-check:
+    desc: コードフォーマットのチェック (修正なし)
+    cmds:
+      - dotnet format {{.PROJECT_DIR}} --verify-no-changes
+
+  clean:
+    desc: ビルド成果物を削除
+    cmds:
+      - rm -rf {{.PROJECT_DIR}}/bin {{.PROJECT_DIR}}/obj {{.PUBLISH_DIR}}

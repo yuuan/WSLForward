@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>WslForward</RootNamespace>
+    <AssemblyName>WslForward</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="TaskScheduler" Version="2.12.2" />
+    <PackageReference Include="WindowsFirewallHelper" Version="2.2.0.86" />
+  </ItemGroup>
+</Project>
